@@ -7,23 +7,26 @@ import {
   NavbarLink,
   NavbarToggle,
 } from "flowbite-react";
+import Image from "next/image";
 
 export default function NavbarComponent() {
   return (
-    <Navbar fluid rounded>
+    <Navbar fluid>
       <NavbarBrand href="https://flowbite-react.com">
-        <img
+        <Image
           src="/favicon.ico"
           className="mr-3 h-6 sm:h-9"
-          alt="Flowbite React Logo"
+          alt="We Bible"
+          width={36}
+          height={36}
         />
         <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-          Flowbite React
+          We Bible
         </span>
       </NavbarBrand>
-      <div className="flex md:order-2">
-        <DarkThemeToggle />
-        <Button>Get started</Button>
+      <div className="flex gap-1 md:order-2">
+        <DarkThemeToggle className="cursor-pointer" />
+        <Button className="cursor-pointer">로그인</Button>
         <NavbarToggle />
       </div>
       <NavbarCollapse>
