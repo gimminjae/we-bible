@@ -22,5 +22,13 @@ const browserUtil = {
       // )
     // }
   },
+  updateUrl: (inputParams: any) => {
+    const params = new URLSearchParams(window.location.search)
+    Object.entries(inputParams).forEach(([key, value]) => {
+      params.set(key, value as string)
+    })
+    const newUrl = `${window.location.pathname}?${params.toString()}`
+    window.history.replaceState({}, "", newUrl)
+  }
 }
 export default browserUtil

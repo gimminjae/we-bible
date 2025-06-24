@@ -1,5 +1,54 @@
+"use client"
+
+import useBible from "@/hooks/useBible"
+import useBibleSearchParams from "@/store/zustand/BibleSearchParams"
+import browserUtil from "@/utils/browser.util"
+import { useSearchParams } from "next/navigation"
+import { useEffect, useState } from "react"
+
 function Page() {
-  return <div>BiblesPage</div>
+  const searchParams = useSearchParams()
+
+  const bibleSearchParams = useBibleSearchParams((state) => state.searchParam)
+
+  const { bibleData, refetch, getBookName } = useBible({
+    bookCode: bibleSearchParams.bookCode,
+    chapter: bibleSearchParams.chapter,
+    lang: bibleSearchParams.lang,
+  })
+
+  useEffect(() => {
+    console.log("bibleData: ", bibleData)
+  }, [bibleData])
+
+  useEffect(() => {
+    browserUtil.updateUrl({
+      bookCode: bibleSearchParams.bookCode,
+      chapter: bibleSearchParams.chapter,
+      lang: bibleSearchParams.lang,
+    })
+  }, [bibleSearchParams])
+
+  return (
+    <>
+      <div>
+        <h1>
+          {getBookName(
+            bibleSearchParams.bookCode,
+            bibleSearchParams.lang || "ko"
+          )}{" "}
+          {bibleSearchParams.chapter} 장
+        </h1>
+        <ul>
+          {bibleData.verses.map((verse) => (
+            <li key={verse.verse}>
+              {verse.verse} {verse.content}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
+  )
 }
 
 export default Page
