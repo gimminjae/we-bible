@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   const CARDS = [
@@ -6,7 +7,7 @@ export default function Home() {
       title: "성경 읽기",
       description:
         "Learn more on how to get started and use the Flowbite React components",
-      url: "https://flowbite-react.com/",
+      url: "/bibles",
       icon: (
         <svg
           className="h-9 w-9 text-gray-500"
@@ -172,10 +173,10 @@ export default function Home() {
         <div className="relative flex w-full flex-col items-start gap-6 self-stretch">
           <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
             {CARDS.map((card) => (
-              <a
+              <Link
                 key={card.title}
                 href={card.url}
-                target="_blank"
+                // target="_blank"
                 className="outline-primary-600 dark:outline-primary-500 group hover:border-primary-600 dark:hover:border-primary-500 cursor-pointer overflow-hidden rounded-xl border border-gray-200 bg-gray-50 outline-offset-2 focus:outline-2 dark:border-gray-700 dark:bg-gray-800"
               >
                 <div className="flex items-center gap-6 p-4">
@@ -209,7 +210,7 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
