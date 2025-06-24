@@ -1,5 +1,6 @@
 "use client"
 
+import { BreadCrumb } from "@/components/common"
 import useBible from "@/hooks/useBible"
 import useBibleSearchParams from "@/store/zustand/BibleSearchParams"
 import browserUtil from "@/utils/browser.util"
@@ -29,23 +30,41 @@ function Page() {
     })
   }, [bibleSearchParams])
 
+  const currentBibleInfo = {
+    bookName: getBookName(
+      bibleSearchParams.bookCode,
+      bibleSearchParams.lang || "ko"
+    ),
+    chapter: bibleSearchParams.chapter,
+  }
+
   return (
     <>
-      <div>
-        <h1>
-          {getBookName(
-            bibleSearchParams.bookCode,
-            bibleSearchParams.lang || "ko"
-          )}{" "}
-          {bibleSearchParams.chapter} 장
-        </h1>
-        <ul>
-          {bibleData.verses.map((verse) => (
-            <li key={verse.verse}>
-              {verse.verse} {verse.content}
-            </li>
-          ))}
-        </ul>
+      <h1 className="hidden">{currentBibleInfo?.bookName} {currentBibleInfo?.chapter}장</h1>
+      <div className="flex flex-col gap-4">
+        <div className="flex justify-center items-center">
+          <BreadCrumb
+            breadCrumbs={[
+              {
+                text: currentBibleInfo.bookName,
+                action: () => {},
+              },
+              {
+                text: `${currentBibleInfo.chapter} 장`,
+                action: () => {},
+              },
+            ]}
+          />
+        </div>
+        <div className="mx-auto w-[60%]">
+          <ul>
+            {bibleData.verses.map((verse) => (
+              <li key={verse.verse}>
+                {verse.verse} {verse.content}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </>
   )
