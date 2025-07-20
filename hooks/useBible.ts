@@ -7,7 +7,7 @@ interface UseBibleProps {
   lang?: string
 }
 
-interface BibleData {
+export interface BibleData {
   verses: any[]
   error: Error | null
   isLoading: boolean

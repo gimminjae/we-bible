@@ -978,20 +978,20 @@ export const getBookName = (bookCode: string, lang: string) => {
 }
 const bibleService = {
   async getBible(params: BibleInfo) {
+    let result = []
     if (params.lang === "ko" || params.lang === null) {
-      return await api.get(
+      result = await api.get(
         `https://webible.s3.ap-northeast-2.amazonaws.com/bible/${params.bookCode}/${params.chapter}.json`
       )
     } else if (params.lang === "en") {
-      return (
+      result =
         (
           await api.get(
             `https://cdn.jsdelivr.net/gh/wldeh/bible-api/bibles/en-kjv/books/${params.bookCode}/chapters/${params.chapter}.json`
           )
         )?.data || []
-      )
     } else if (params.lang === "de") {
-      return (
+      result =
         (
           await api.get(
             `https://cdn.jsdelivr.net/gh/wldeh/bible-api/bibles/de-luther1912/books/${
@@ -1000,8 +1000,14 @@ const bibleService = {
             }/chapters/${params.chapter}.json`
           )
         )?.data || []
-      )
     }
+    return params.lang === "ko"
+      ? result
+      : result.map((item: any) => ({
+          ...item,
+          content: item?.text,
+          bookName: item?.book,
+        }))
   },
   async getVersions(params: BibleInfo) {
     return api.get(

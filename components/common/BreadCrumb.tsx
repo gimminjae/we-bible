@@ -2,7 +2,6 @@
 
 import { Breadcrumb, BreadcrumbItem } from "flowbite-react"
 import { ReactNode } from "react"
-import { HiHome } from "react-icons/hi"
 
 interface BreadCrumbItem {
   icon?: ReactNode
@@ -12,15 +11,16 @@ interface BreadCrumbItem {
 
 interface BreadCrumbProps {
   breadCrumbs: BreadCrumbItem[]
+  className?: string
 }
 
-export default function BreadCrumb({ breadCrumbs }: BreadCrumbProps) {
+export default function BreadCrumb({ breadCrumbs, className }: BreadCrumbProps) {
   return (
-    <Breadcrumb aria-label="Default breadcrumb example">
+    <Breadcrumb aria-label="Breadcrumb" className={className}>
       {breadCrumbs.map((breadcrumb) => (
         <BreadcrumbItem
+          className="cursor-pointer"
           key={breadcrumb.text}
-          href="#"
           icon={breadcrumb.icon as any}
           onClick={breadcrumb.action}
         >

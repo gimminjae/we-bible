@@ -1,13 +1,15 @@
-import Image from "next/image";
-import Link from "next/link";
+"use server"
 
-export default function Home() {
+import Image from "next/image"
+import Link from "next/link"
+
+export default async function Home() {
   const CARDS = [
     {
       title: "성경 읽기",
       description:
         "Learn more on how to get started and use the Flowbite React components",
-      url: "/bibles",
+      url: "/bibles/genesis.1.ko",
       icon: (
         <svg
           className="h-9 w-9 text-gray-500"
@@ -31,7 +33,7 @@ export default function Home() {
       title: "나의 읽기 현황 & 묵상 & 메모",
       description:
         "Get started with over 450 blocks to build websites even faster",
-      url: "https://flowbite.com/blocks/",
+      url: "/my",
       icon: (
         <svg
           className="h-9 w-9 text-gray-500"
@@ -99,28 +101,7 @@ export default function Home() {
         </svg>
       ),
     },
-    {
-      title: "Flowbite Pro",
-      description:
-        "Upgrade your development stack with more components and templates from Flowbite",
-      url: "https://flowbite.com/pro/",
-      icon: (
-        <Image
-          alt="Flowbite Pro logo"
-          src="/flowbite.svg"
-          width={36}
-          height={36}
-        />
-      ),
-    },
-    {
-      title: "Flowbite Figma",
-      description:
-        "Use our Figma Design System to design and collaborate better within your team",
-      url: "https://flowbite.com/figma/",
-      icon: <Image alt="Figma logo" src="/figma.svg" width={36} height={36} />,
-    },
-  ];
+  ]
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-white px-4 py-24 dark:bg-gray-900">
@@ -216,5 +197,5 @@ export default function Home() {
         </div>
       </div>
     </main>
-  );
+  )
 }

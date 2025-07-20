@@ -3,3 +3,7 @@
 @source "../.flowbite-react/class-list.json";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+div, nav, span, a {
+  @apply dark:bg-gray-900;
+}
