@@ -4,6 +4,12 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* CSS Custom Properties for font size management */
+:root {
+  --font-size: 16px;
+  --verse-size: 21px;
+}
+
 div, nav, span, a {
   @apply dark:bg-gray-900;
 }

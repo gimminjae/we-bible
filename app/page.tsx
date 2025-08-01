@@ -9,7 +9,7 @@ export default async function Home() {
       title: "성경 읽기",
       description:
         "Learn more on how to get started and use the Flowbite React components",
-      url: "/bibles/genesis.1.ko",
+      url: "/bibles/",
       icon: (
         <svg
           className="h-9 w-9 text-gray-500"
