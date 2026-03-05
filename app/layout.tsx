@@ -1,7 +1,8 @@
 import { ThemeModeScript } from "flowbite-react"
 import type { Metadata } from "next"
 import "./globals.css"
-import Header from "@/components/header/Header"
+import AppShell from "@/components/layout/AppShell"
+import AppNavigation from "@/components/navigation/AppNavigation"
 import { Geist, Geist_Mono } from "next/font/google"
 import Providers from "./providers"
 
@@ -31,11 +32,11 @@ export default function RootLayout({
         <ThemeModeScript />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-gray-900`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
-          <Header />
-          {children}
+          <AppShell>{children}</AppShell>
+          <AppNavigation />
         </Providers>
       </body>
     </html>

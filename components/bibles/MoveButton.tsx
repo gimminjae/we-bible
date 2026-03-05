@@ -7,17 +7,18 @@ interface Props {
 }
 
 function MoveButton({ bibleInfo, direction }: Props) {
+  const nextChapter =
+    direction === "prev" ? Math.max(1, bibleInfo.chapter - 1) : bibleInfo.chapter + 1
+
   return (
     <Link
-      href={`/bibles/${bibleInfo.bookCode}.${
-        direction === "prev" ? bibleInfo.chapter - 1 : bibleInfo.chapter + 1
-      }.${bibleInfo.lang}.${bibleInfo.otherLang || ""}`}
+      href={`/bibles/${bibleInfo.bookCode}.${nextChapter}.${bibleInfo.lang}.${bibleInfo.otherLang || "none"}`}
       replace
-      className="p-2 rounded-full bg-white shadow"
+      className="btn btn-circle btn-outline"
       style={{ pointerEvents: "auto" }}
       aria-label={direction}
     >
-      <span style={{ fontSize: 64 }} className="dark:text-white">
+      <span className="text-xl">
         {direction === "prev" ? <>&larr;</> : <>&rarr;</>}
       </span>
     </Link>
